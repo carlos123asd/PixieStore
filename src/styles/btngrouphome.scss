@@ -1,0 +1,22 @@
+.btngrouphome{
+    text-align: -webkit-right;
+    margin-right: .6em;
+    margin-top: .6em;
+    &__like, &__download{
+        width: 30px;
+        height: 30px;
+        border-radius: 0.563em;
+        background-color: rgba($color: #D9D9D9, $alpha: 31%);
+        align-content: center;
+        &__img{
+            display: block;
+            margin: 0 auto;
+            width: 20px;
+            height: 20px;
+        }
+    }
+    &__like{
+        margin-bottom: .4em;
+       
+    }
+}

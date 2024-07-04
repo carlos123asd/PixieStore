@@ -1,6 +1,7 @@
 .images {
   width: 100%;
   height: 32.75em;
+  margin-top: 1.5rem;
 }
 .images__image {
   border: 1px solid red;

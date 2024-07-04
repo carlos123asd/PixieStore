@@ -1,6 +1,7 @@
 import imgTitle from '../../assets/image/logo.svg'
 import imgLike from '../../assets/image/like.svg'
 import imgHome from '../../assets/image/home.svg'
+import { NavLink } from 'react-router-dom'
 
 export default function Nav() {
     return <>
@@ -11,13 +12,16 @@ export default function Nav() {
             </div>
 
             <div className="nav__btns">
-                <div className="nav__btns__content">
-                    <img src={imgLike} alt='My Collection' className="nav__btns__like"/>
-                </div>
-
-                <div className="nav__btns__content">
-                    <img src={imgHome} alt='Home Page' className="nav__btns__home"/>
-                </div>
+                <NavLink to={'/myCollection'}>
+                    <div className="nav__btns__content">
+                        <img src={imgLike} alt='My Collection' className="nav__btns__like"/>
+                    </div>
+                </NavLink>
+                <NavLink to={'/'}>
+                    <div className="nav__btns__content">
+                        <img src={imgHome} alt='Home Page' className="nav__btns__home"/>
+                    </div>
+                </NavLink>
             </div>
         </nav>
     </>

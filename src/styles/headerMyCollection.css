@@ -1,0 +1,14 @@
+.header {
+  margin-top: 2em;
+  margin-left: 1.2em;
+}
+.header__tit {
+  font-family: "inter-bold";
+  font-size: 2.25rem;
+  margin-bottom: 0.4em;
+}
+.header__subtit {
+  font-family: "inter-regular";
+  font-size: 1rem;
+  color: #61788A;
+}/*# sourceMappingURL=headerMyCollection.css.map */

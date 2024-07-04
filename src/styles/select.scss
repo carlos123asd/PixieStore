@@ -5,8 +5,17 @@
     width: 15.313em;
     height: 2.5em;
     margin: .7em auto;
+    padding-left: 1em;
     & option{
         color: #3BA0F3;
         font-family: 'inter-bold';
+    }
+}
+
+@media only screen and (min-width:1000px){
+    .content{
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
     }
 }

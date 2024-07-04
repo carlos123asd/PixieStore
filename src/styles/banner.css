@@ -3,6 +3,9 @@
   height: 19.563em;
   align-content: center;
   text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .banner__text {
   color: #fff;
@@ -15,4 +18,10 @@
 .banner__text__subtit {
   font-family: "inter-regular";
   font-size: 1rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  .banner {
+    height: 30em;
+  }
 }/*# sourceMappingURL=banner.css.map */

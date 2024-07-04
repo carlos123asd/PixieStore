@@ -7,11 +7,15 @@
   margin-top: 0.8em;
   text-align: center;
 }
-.search__icon {
+.search__content {
+  display: inline-block;
+  height: 100%;
+}
+.search__content__icon {
   width: 36px;
   height: 100%;
   margin-right: 1rem;
-  display: inline-block;
+  display: block;
 }
 .search__input {
   display: inline-block;
@@ -19,6 +23,10 @@
   height: 100%;
   vertical-align: top;
   border: none;
+  margin: 0 0.6em;
+}
+.search__input:focus {
+  outline: none;
 }
 .search__btn {
   display: inline-block;
@@ -32,4 +40,14 @@
   font-family: "inter-bold";
   vertical-align: top;
   margin-top: 0.45em;
+}
+
+@media only screen and (min-width: 1000px) {
+  .search {
+    width: 30em;
+    background-color: #fff;
+  }
+  .search__input {
+    width: 21.25em;
+  }
 }/*# sourceMappingURL=search.css.map */

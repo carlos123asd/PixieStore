@@ -1,0 +1,16 @@
+.btndiscovermore{
+    width: fit-content;
+    height: 2.885em;
+    padding: 0 5em;
+    background-color: #F0F2F5;
+    border-radius: 0.75em;
+    margin: 1em auto;
+    margin-bottom: 4em;
+    text-align: center;
+    align-content: center;
+    color: black;
+    &__span{
+        font-family: 'inter-bold';
+        font-size: 0.88rem;
+    }
+}

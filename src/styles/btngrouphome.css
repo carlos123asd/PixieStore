@@ -1,0 +1,21 @@
+.btngrouphome {
+  text-align: -webkit-right;
+  margin-right: 0.6em;
+  margin-top: 0.6em;
+}
+.btngrouphome__like, .btngrouphome__download {
+  width: 30px;
+  height: 30px;
+  border-radius: 0.563em;
+  background-color: rgba(217, 217, 217, 0.31);
+  align-content: center;
+}
+.btngrouphome__like__img, .btngrouphome__download__img {
+  display: block;
+  margin: 0 auto;
+  width: 20px;
+  height: 20px;
+}
+.btngrouphome__like {
+  margin-bottom: 0.4em;
+}/*# sourceMappingURL=btngrouphome.css.map */

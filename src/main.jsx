@@ -6,13 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { store } from './app/store'
 //Vistas
 import { HomePage } from './pages/HomePage'
-/*import Nav from './components/nav/Nav'
-import Banner from './components/banner/Banner'
-import Search from './components/search/Search'
-import SelectFilter from './components/select/SelectFilter'
-import ContentImages from './components/contentimages/ContentImages'
-import Footer from './components/footer/Footer'*/
-
+import { MyCollection } from './pages/MyCollection'
 //imports css
 import './styles/index.css'
 import './styles/nav.css'
@@ -21,6 +15,12 @@ import './styles/search.css'
 import './styles/select.css'
 import './styles/images.css'
 import './styles/footer.css'
+import './styles/headerMyCollection.css'
+import './styles/tag.css'
+import './styles/btndiscovermore.css'
+import './styles/btngrouphome.css'
+import './styles/btngroumycollection.css'
+import './styles/subtitlesection.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -28,6 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <BrowserRouter>
         <Routes>
           <Route path='' element={<HomePage />}/>
+          <Route path='/myCollection' element={<MyCollection />}/>
         </Routes>
       </BrowserRouter>
     </Provider>
