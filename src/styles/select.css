@@ -1,0 +1,12 @@
+.select {
+  display: block;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  width: 15.313em;
+  height: 2.5em;
+  margin: 0.7em auto;
+}
+.select option {
+  color: #3BA0F3;
+  font-family: "inter-bold";
+}/*# sourceMappingURL=select.css.map */

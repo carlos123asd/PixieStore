@@ -1,0 +1,10 @@
+.images{
+    width: 100%;
+    height: 32.75em;
+    &__image{
+        border: 1px solid red;
+        width: 90%;
+        height: 22.875em;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,35 @@
+.search{
+    border: 1px solid #DBE0E5;
+    width: 24.25em;
+    height: 4em;
+    border-radius: 0.75em;
+    margin: 0 auto;
+    margin-top: .8em;
+    text-align: center;
+    &__icon{
+        width: 36px;
+        height: 100%;
+        margin-right: 1rem;
+        display: inline-block;
+    }
+    &__input{
+        display: inline-block;
+        width: 15.5em;
+        height: 100%;
+        vertical-align: top;
+        border: none;
+    }
+    &__btn{
+        display: inline-block;
+        width: 6em;
+        height: 3em;
+        background-color: #2194F2;
+        color: #fff;
+        border-radius: 0.75em;
+        text-align: center;
+        align-content: center;
+        font-family: 'inter-bold';
+        vertical-align: top;
+        margin-top: .45em;
+    }
+}
