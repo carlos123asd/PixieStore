@@ -21,6 +21,7 @@ import './styles/btndiscovermore.css'
 import './styles/btngrouphome.css'
 import './styles/btngroumycollection.css'
 import './styles/subtitlesection.css'
+import './styles/pagination.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
