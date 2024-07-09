@@ -24,6 +24,7 @@ import './styles/btngroumycollection.css'
 import './styles/subtitlesection.css'
 import './styles/pagination.css'
 import './styles/description.css'
+import './styles/btnfavorite.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

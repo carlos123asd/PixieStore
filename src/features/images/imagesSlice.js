@@ -1,24 +1,24 @@
-import { createSlice, isPending, isRejected } from '@reduxjs/toolkit'
+import { createSlice} from '@reduxjs/toolkit'
 import { fetchRandomImagesListThunk } from './imagesThunk';
 
 const randomImagesSlice = createSlice({
     name: 'images',
     initialState: {
-        isLoading: false,
+        status: 'idle',
         data: null,
-        isRejected: false
+        error: null
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchRandomImagesListThunk.pending, (state, action) => {
-            state.isLoading = true;
+        builder.addCase(fetchRandomImagesListThunk.pending, (state) => {
+            state.status = 'pending';
         });
         builder.addCase(fetchRandomImagesListThunk.fulfilled, (state, action) => {
-            state.isLoading = false;
             state.data = action.payload;
+            state.status = 'fulfilled';
         });
         builder.addCase(fetchRandomImagesListThunk.rejected, (state, action) => {
-            state.isRejected = true;
-            console.log("Error imageSlice: "+action.payload);
+            state.error = action.error;
+            state.status = 'rejected';
         });
     }
 });

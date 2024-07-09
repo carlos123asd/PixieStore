@@ -1,21 +1,27 @@
 .btngrouphome {
   text-align: -webkit-right;
+  right: 0;
+  top: 0;
   margin-right: 0.6em;
   margin-top: 0.6em;
+  position: absolute;
+  z-index: 1000;
 }
 .btngrouphome__like, .btngrouphome__download {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 0.563em;
-  background-color: rgba(217, 217, 217, 0.31);
+  background-color: rgba(217, 217, 217, 0.4);
+  position: relative;
   align-content: center;
 }
 .btngrouphome__like__img, .btngrouphome__download__img {
   display: block;
   margin: 0 auto;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
 }
 .btngrouphome__like {
   margin-bottom: 0.4em;
+  position: relative;
 }/*# sourceMappingURL=btngrouphome.css.map */

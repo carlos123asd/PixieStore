@@ -10,6 +10,9 @@ import BtnDiscoverMore from '../components/btndiscovermore/BtnDiscoverMore'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRandomImagesListThunk } from '../features/images/imagesThunk'
+import { useLocation } from 'react-router-dom'
+import { store } from '../app/store'
+import { resetStyle } from "../features/style/styleContentImageSlice";
 
 export function HomePage(){
     const [width, setWidth] = useState(window.innerWidth);
@@ -17,14 +20,26 @@ export function HomePage(){
         setWidth(window.innerWidth);
     });
 
+    const path = useLocation().pathname;
+
+    const [loading,setLoading] = useState(true);
     const dispatch = useDispatch();
-    const state = useSelector(state => state);
+    const stateImageData = useSelector(state => state.images.data);
+    const stateImageStatus = useSelector(state => state.images.status);
     
     useEffect(() =>{
-        dispatch(fetchRandomImagesListThunk());
-    },[])
+        if(stateImageStatus === 'idle'){
+            dispatch(fetchRandomImagesListThunk());
+        }else if(stateImageStatus === 'fulfilled'){
+            setLoading(false);
+        }
+    },[stateImageStatus])
+
+    useEffect(() => {
+        store.dispatch(resetStyle());
+    }, [])
     
-    if(state.images.isLoading){
+    if(loading){ 
         return <h1>Loading...</h1>
     }else{
         return <>
@@ -34,7 +49,7 @@ export function HomePage(){
             {(width < 1000) ? null : <Subtitles title='Trending searches'/>}
             {(width < 1000) ? <SelectFilter /> : <div style={{width:'100%', height:'4em'}}><Tags /><SelectFilter /></div>}
             {(width < 1000) ? null : <Subtitles title='New & Notable'/>}
-            <ContentImages imgs={state.images.data}/>
+            <ContentImages imgs={stateImageData} path={path}/>
             <BtnDiscoverMore />
             <Footer width={width}/>
         </>

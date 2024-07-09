@@ -2,20 +2,21 @@
   text-align: -webkit-right;
   margin-right: 0.6em;
   margin-top: 0.6em;
+  position: absolute;
+  z-index: 1000;
+  right: 0;
 }
 .btngroumycollection__edit, .btngroumycollection__download {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 0.563em;
   background-color: rgba(217, 217, 217, 0.31);
   align-content: center;
+  margin-bottom: 0.5em;
 }
 .btngroumycollection__edit__img, .btngroumycollection__download__img {
   display: block;
   margin: 0 auto;
-  width: 20px;
-  height: 20px;
-}
-.btngroumycollection__like {
-  margin-bottom: 0.4em;
+  width: 25px;
+  height: 25px;
 }/*# sourceMappingURL=btngroumycollection.css.map */

@@ -5,6 +5,8 @@ import Search from "../components/search/Search";
 import ContentImages from "../components/contentimages/ContentImages";
 import Subtitles from "../components/subtitles/Subtitles";
 import Description from "../components/description/Description";
+import { store } from "../app/store";
+import { resetStyle } from "../features/style/styleContentImageSlice";
 
 export function ImageSelected(){
     const [width, setWidth] = useState(window.innerWidth);
@@ -12,6 +14,7 @@ export function ImageSelected(){
         setWidth(window.innerWidth);
     });
     const path = useLocation().pathname;
+    store.dispatch(resetStyle());
     const styleImageSelectedNav = {
         search: {
             content:{

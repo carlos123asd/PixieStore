@@ -1,11 +1,23 @@
 .images{
     width: 100%;
-    height: 32.75em;
+    //height: calc((32.75em * 4) - 2em);
     margin-top: 1.5rem;
+    overflow: hidden;
+    //mask-image: linear-gradient(to top, transparent 1%, black 16%);
+    //-webkit-mask-image: linear-gradient(to top, transparent 1%, black 16%);
     &__image{
-        border: 1px solid red;
         width: 90%;
-        height: 22.875em;
+        height: 31.875em;
         margin: 0 auto;
+        position: relative;
+        margin-bottom: 0.4rem;
+        &__img{
+            width: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+            position: absolute;
+        }
     }
 }

@@ -2,20 +2,21 @@
     text-align: -webkit-right;
     margin-right: .6em;
     margin-top: .6em;
+    position: absolute;
+    z-index: 1000;
+    right: 0;
     &__edit, &__download{
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 0.563em;
         background-color: rgba($color: #D9D9D9, $alpha: 31%);
         align-content: center;
+        margin-bottom: .5em;
         &__img{
             display: block;
             margin: 0 auto;
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
         }
-    }
-    &__like{
-        margin-bottom: .4em;
     }
 }

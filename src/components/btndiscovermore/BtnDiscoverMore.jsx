@@ -1,11 +1,16 @@
 import { useState } from "react"
 import Pagination from "../pagination/Pagination";
+import { store } from "../../app/store";
+import { changeStyle } from "../../features/style/styleContentImageSlice";
+
 export default function BtnDiscoverMore(){
     const [hidden,setHidden] = useState({});
+
     const clickHandle = () => {
         setHidden({
             display: 'none'
         })
+        store.dispatch(changeStyle());
     }
 
     return <>
