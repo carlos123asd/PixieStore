@@ -1,0 +1,70 @@
+.information{
+    width: 100%;
+    padding: 0 2em;
+    margin-top: .6em;
+    &__head{
+        &__img{
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-block;
+            &__user{
+                width: 100%;
+                height: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+        &__profile{
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 1em;
+            width: 55%;
+            &__name{
+                font-family: 'inter-medium';
+                font-size: 1rem;
+                display: block;
+            }
+            &__views{
+                font-family: 'inter-regular';
+                font-size: 0.88rem;
+                display: block;
+                color: #61788A;
+            }
+        }
+        &__likes{
+            width: 5.625em;
+            height: 2.5em;
+            border-radius: 0.75em;
+            background-color: #F0F2F5;
+            text-align: center;
+            align-content: center;
+            display: inline-block;
+            vertical-align: top;
+            font-family: 'inter-medium';
+            font-size: 0.88rem;
+            &__icon{
+                width: 20px;
+                height: 20px;
+                margin-right: .3em;
+                vertical-align: middle;
+            }
+        }
+    }
+    &__titdetails{
+        font-family: 'inter-bold';
+        font-size: 0.88rem;
+        margin: .5em 0;
+    }
+    &__details{
+        font-family: 'inter-regular';
+        font-size: 0.88rem;
+        color: #61788A;
+        &__tit{
+            display: inline-block;
+            width: 60%;
+        }
+    }
+}

@@ -25,6 +25,11 @@ import './styles/subtitlesection.css'
 import './styles/pagination.css'
 import './styles/description.css'
 import './styles/btnfavorite.css'
+import './styles/cardInformation.css'
+import './styles/btndownload.css'
+import './styles/btnaddfavorite.css'
+import './styles/headerimgselected.css'
+import './styles/slice.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

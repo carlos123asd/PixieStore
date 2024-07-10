@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchRandomImagesListThunk = createAsyncThunk('images/getRandomImagesList', async () => {
-    const response = await fetch('https://api.unsplash.com/photos/random/?client_id=rK1dqeOujRJk0Ta-s_WkJNKp9XhAE3ZSHKf-xc5z-dA&count=10')
+    const response = await fetch('https://api.unsplash.com/photos/random/?client_id=rK1dqeOujRJk0Ta-s_WkJNKp9XhAE3ZSHKf-xc5z-dA&count=15')
         try{
             if(response.ok){
                 const json = await response.json()

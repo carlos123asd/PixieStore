@@ -1,0 +1,13 @@
+.slider {
+  height: 22.125em;
+  width: 80%;
+  border-radius: 0.75em;
+  margin-top: 1.5em;
+}
+.slider__img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}/*# sourceMappingURL=slice.css.map */

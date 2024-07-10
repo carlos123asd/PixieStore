@@ -7,7 +7,7 @@ const styleContentImageSlice = createSlice({
             //height: 'auto',
             mask: 'linear-gradient(to top, transparent 1%, black 16%)',
             webkit: 'linear-gradient(to top, transparent 1%, black 16%)'
-        }//`${((32.75 * 4) - 2)}em`,
+        }
     },
     reducers:{
         changeStyle(state){

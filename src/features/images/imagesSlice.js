@@ -5,8 +5,16 @@ const randomImagesSlice = createSlice({
     name: 'images',
     initialState: {
         status: 'idle',
-        data: null,
-        error: null
+        data: [],
+        error: null,
+        randomPhotos: []
+    },
+    reducers: {
+        getRandomPhotosSlider(state, action){
+            for(let i = 0; i <= 10; i+=2){
+                state.randomPhotos.push(action.payload[i]);
+            }
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchRandomImagesListThunk.pending, (state) => {
@@ -24,3 +32,4 @@ const randomImagesSlice = createSlice({
 });
 
 export default randomImagesSlice.reducer;
+export const { getRandomPhotosSlider } = randomImagesSlice.actions

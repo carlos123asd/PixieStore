@@ -1,0 +1,15 @@
+.addfavorite{
+    width: 100%;
+    text-align: -webkit-center;
+    margin-top: 1.5em;
+    &__btn{
+        background-color: #F0F2F5;
+        width: 20.625em;
+        text-align: center;
+        height: 3em;
+        border-radius: 0.75em;
+        align-content: center;
+        font-family: 'inter-bold';
+        font-size: 0.88rem;
+    }
+}
