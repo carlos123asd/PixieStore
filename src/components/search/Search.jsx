@@ -1,6 +1,18 @@
+import { useState } from 'react'
+import { store } from '../../app/store'
 import imgSearch from '../../assets/image/search.svg'
+import { imagesSearchThunk } from '../../features/images/imagesSearchThunk'
+import { setSearch } from '../../features/images/imagesSlice';
 
 export default function Search({placeholder, width, style, path}){
+
+    const [keyword,setKeyWord] = useState('');
+
+    const clickSearchHandle = () => {
+        store.dispatch(imagesSearchThunk(keyword))
+        store.dispatch(setSearch(true))
+    };
+
     if(width >= 1000){
         if(path === '/profile'){
             return <>
@@ -8,8 +20,8 @@ export default function Search({placeholder, width, style, path}){
                     <div className='search__content'>
                         <img src={imgSearch} alt='icon search' className="search__content__icon"/>
                     </div>
-                    <input placeholder={placeholder} style={style.widthinput, style.input} className="search__input"></input>
-                    <div className="search__btn" style={style.btn}>Search</div>
+                    <input onChange={event => setKeyWord(event.target.value)} placeholder={placeholder} style={style.widthinput, style.input} className="search__input"></input>
+                    <div onClick={clickSearchHandle} className="search__btn" style={style.btn}>Search</div>
                 </div>
             </>
         }else{
@@ -18,8 +30,8 @@ export default function Search({placeholder, width, style, path}){
                     <div className='search__content'>
                         <img src={imgSearch} alt='icon search' className="search__content__icon"/>
                     </div>
-                    <input placeholder={placeholder} style={style.widthinput} className="search__input"></input>
-                    <div className="search__btn">Search</div>
+                    <input onChange={event => setKeyWord(event.target.value)} placeholder={placeholder} style={style.widthinput} className="search__input"></input>
+                    <div onClick={clickSearchHandle} className="search__btn">Search</div>
                 </div>
             </>
         }
@@ -29,8 +41,8 @@ export default function Search({placeholder, width, style, path}){
                 <div className='search__content'>
                     <img src={imgSearch} alt='icon search' className="search__content__icon"/>
                 </div>
-                <input placeholder={placeholder} className="search__input"></input>
-                <div style={style} className="search__btn">Search</div>
+                <input onChange={event => setKeyWord(event.target.value)} placeholder={placeholder} className="search__input"></input>
+                <div onClick={clickSearchHandle} style={style} className="search__btn">Search</div>
             </div>
         </>
     }

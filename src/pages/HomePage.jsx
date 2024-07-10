@@ -9,10 +9,10 @@ import Tags from '../components/tags/Tags'
 import BtnDiscoverMore from '../components/btndiscovermore/BtnDiscoverMore'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchRandomImagesListThunk } from '../features/images/imagesThunk'
 import { useLocation } from 'react-router-dom'
 import { store } from '../app/store'
 import { resetStyle } from "../features/style/styleContentImageSlice";
+import { imagesSearchThunk } from '../features/images/imagesSearchThunk'
 
 export function HomePage(){
     const [width, setWidth] = useState(window.innerWidth);
@@ -24,16 +24,19 @@ export function HomePage(){
 
     const [loading,setLoading] = useState(true);
     const dispatch = useDispatch();
+
     const stateImageData = useSelector(state => state.images.data);
     const stateImageStatus = useSelector(state => state.images.status);
     
     useEffect(() =>{
         if(stateImageStatus === 'idle'){
-            dispatch(fetchRandomImagesListThunk());
+            dispatch(imagesSearchThunk());
         }else if(stateImageStatus === 'fulfilled'){
             setLoading(false);
         }
     },[stateImageStatus])
+
+    console.log('Images Search o Random',stateImageData);
 
     useEffect(() => {
         store.dispatch(resetStyle());

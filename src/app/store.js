@@ -9,6 +9,6 @@ export const store = configureStore({
         images: imagesSlice,
         styleImages: styleContentImageSlice,
         imageChange: imagesChangesSlice,
-        imageSelected: imageSelectedSlice
+        imageSelected: imageSelectedSlice,
     }
 });

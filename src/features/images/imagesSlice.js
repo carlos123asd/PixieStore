@@ -1,5 +1,5 @@
 import { createSlice} from '@reduxjs/toolkit'
-import { fetchRandomImagesListThunk } from './imagesThunk';
+import { imagesSearchThunk } from './imagesSearchThunk';
 
 const randomImagesSlice = createSlice({
     name: 'images',
@@ -7,24 +7,28 @@ const randomImagesSlice = createSlice({
         status: 'idle',
         data: [],
         error: null,
-        randomPhotos: []
+        randomPhotos: [],
+        search: false
     },
     reducers: {
         getRandomPhotosSlider(state, action){
             for(let i = 0; i <= 10; i+=2){
                 state.randomPhotos.push(action.payload[i]);
             }
+        },
+        setSearch(state, action){
+            state.search = action.payload
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchRandomImagesListThunk.pending, (state) => {
+        builder.addCase(imagesSearchThunk.pending, (state) => {
             state.status = 'pending';
         });
-        builder.addCase(fetchRandomImagesListThunk.fulfilled, (state, action) => {
+        builder.addCase(imagesSearchThunk.fulfilled, (state, action) => {
             state.data = action.payload;
             state.status = 'fulfilled';
         });
-        builder.addCase(fetchRandomImagesListThunk.rejected, (state, action) => {
+        builder.addCase(imagesSearchThunk.rejected, (state, action) => {
             state.error = action.error;
             state.status = 'rejected';
         });
@@ -32,4 +36,4 @@ const randomImagesSlice = createSlice({
 });
 
 export default randomImagesSlice.reducer;
-export const { getRandomPhotosSlider } = randomImagesSlice.actions
+export const { getRandomPhotosSlider,setSearch } = randomImagesSlice.actions
