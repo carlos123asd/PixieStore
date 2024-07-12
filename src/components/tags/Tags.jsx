@@ -9,7 +9,7 @@ export default function Tags({width}){
         </>
     }else{
         return <>
-            <div className="content__tag" style={{marginTop:'1em'}}>
+            <div className="content__tag">
                 <div className="tag">
                     <span className="tag__span">nature</span>
                 </div>

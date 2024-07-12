@@ -5,8 +5,6 @@ import Search from "../components/search/Search";
 import Subtitles from "../components/subtitles/Subtitles";
 import Description from "../components/description/Description";
 import { store } from "../app/store";
-import { resetStyle } from "../features/style/styleContentImageSlice";
-import { createSelector } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import CardInformation from "../components/cardInformation.jsx/CardInformation";
 import BtnDownload from "../components/btndownload/BtnDownload";
@@ -15,6 +13,7 @@ import HeaderImageSelected from "../components/headerimgselected/HeaderImgSelect
 import RelatedImageSlider from "../components/relatedslice/RelatedImageSlider";
 import { getRandomPhotosSlider } from "../features/images/imagesSlice";
 import Footer from "../components/footer/Footer";
+import Tags from '../components/tags/Tags'
 
 export function ImageSelected(){
     const [width, setWidth] = useState(window.innerWidth);
@@ -73,6 +72,8 @@ export function ImageSelected(){
     return <>
         <Nav width={width} style={styleImageSelectedNav} path={path}/>
         {width < 1000 ? <Search /> : <></>}
+        
+        {width < 1000 ?  <>
         <HeaderImageSelected img={dataCardInformation.img} tit={dataCardInformation.alt}/>
         <Subtitles title={'Photo Description'}/>
         <Description description={dataCardInformation.description} alt={dataCardInformation.alt}/>
@@ -80,7 +81,21 @@ export function ImageSelected(){
         <CardInformation img={dataCardInformation}/>
         <Subtitles title={'Download'}/>
         <BtnDownload />
-        <BtnAddFavorite />
+        <BtnAddFavorite /></> : 
+        <><div className="contentselected">
+            <HeaderImageSelected img={dataCardInformation.img} tit={dataCardInformation.alt}/>
+            <Subtitles title={'Photo Description'}/>
+            <Description description={dataCardInformation.description} alt={dataCardInformation.alt}/>
+        </div>
+        <div className="contentselectedinfo">
+            <Subtitles title={'Author'}/>
+            <CardInformation img={dataCardInformation}/>
+            <Subtitles title={'Download'}/>
+            <BtnDownload />
+            <BtnAddFavorite />
+        </div></>}
+        <Subtitles title={'Tags'} />
+        <Tags />
         <Subtitles title={'More Images'}/>
         <RelatedImageSlider imgs={sixRandomImages}/>
         <Footer />

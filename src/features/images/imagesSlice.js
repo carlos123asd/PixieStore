@@ -8,7 +8,10 @@ const randomImagesSlice = createSlice({
         data: [],
         error: null,
         randomPhotos: [],
-        search: false
+        search: {
+            state: false,
+            keyword: ''
+        }
     },
     reducers: {
         getRandomPhotosSlider(state, action){
@@ -16,8 +19,11 @@ const randomImagesSlice = createSlice({
                 state.randomPhotos.push(action.payload[i]);
             }
         },
-        setSearch(state, action){
-            state.search = action.payload
+        setSearch(state,action){
+            state.search.state = action.payload
+        },
+        setWord(state,action){
+            state.search.keyword = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -36,4 +42,4 @@ const randomImagesSlice = createSlice({
 });
 
 export default randomImagesSlice.reducer;
-export const { getRandomPhotosSlider,setSearch } = randomImagesSlice.actions
+export const { getRandomPhotosSlider,setSearch,setWord } = randomImagesSlice.actions

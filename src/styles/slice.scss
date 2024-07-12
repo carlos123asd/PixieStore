@@ -11,3 +11,14 @@
             width: 100%;
         }
 }
+
+@media only screen and (min-width:1000px){
+    .slider{
+        width: 35%;
+        height: 35.125em;
+        margin: 0;
+        margin-left: 10em;
+        margin-top: 2em;
+        margin-bottom: 4em;
+    }
+}

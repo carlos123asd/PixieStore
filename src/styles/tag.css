@@ -26,6 +26,8 @@
     margin-left: 1.6em;
     align-content: center;
     display: inline-block;
+    margin-top: 1em;
+    padding-left: 2em;
   }
   .tag {
     margin-top: 0;

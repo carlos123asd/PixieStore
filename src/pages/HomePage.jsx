@@ -13,6 +13,7 @@ import { useLocation } from 'react-router-dom'
 import { store } from '../app/store'
 import { resetStyle } from "../features/style/styleContentImageSlice";
 import { imagesSearchThunk } from '../features/images/imagesSearchThunk'
+import { setSearch } from '../features/images/imagesSlice'
 
 export function HomePage(){
     const [width, setWidth] = useState(window.innerWidth);
@@ -20,28 +21,39 @@ export function HomePage(){
         setWidth(window.innerWidth);
     });
 
+    useEffect(() => {
+        store.dispatch(resetStyle());
+    },[])
+
     const path = useLocation().pathname;
 
     const [loading,setLoading] = useState(true);
     const dispatch = useDispatch();
 
+    //SELECTOR RANDOM
     const stateImageData = useSelector(state => state.images.data);
     const stateImageStatus = useSelector(state => state.images.status);
+    //SELECTOR SEARCH
+    const stateImageSearch = useSelector(state => state.images.search.state);
+    const selectoKeyWord = useSelector(state => state.images.search.keyword);
     
     useEffect(() =>{
+        console.log('stateImageStatus',stateImageStatus)
         if(stateImageStatus === 'idle'){
-            dispatch(imagesSearchThunk());
+            if(stateImageSearch === false){
+                console.log('DISPARA RANDOM');
+                dispatch(imagesSearchThunk());
+            }else{
+                dispatch(imagesSearchThunk(selectoKeyWord));
+                console.log('selectorkeyword',selectoKeyWord)
+            }
         }else if(stateImageStatus === 'fulfilled'){
             setLoading(false);
         }
-    },[stateImageStatus])
+    },[stateImageStatus, selectoKeyWord])
 
-    console.log('Images Search o Random',stateImageData);
+    //console.log('Images Search o Random',stateImageData);
 
-    useEffect(() => {
-        store.dispatch(resetStyle());
-    }, [])
-    
     if(loading){ 
         return <h1>Loading...</h1>
     }else{
@@ -50,7 +62,7 @@ export function HomePage(){
             <Banner width={width}/>
             {(width < 1000) ? <Search placeholder='Search free high-resolution photos'/> : null}
             {(width < 1000) ? null : <Subtitles title='Trending searches'/>}
-            {(width < 1000) ? <SelectFilter /> : <div style={{width:'100%', height:'4em'}}><Tags /><SelectFilter /></div>}
+            <Tags />
             {(width < 1000) ? null : <Subtitles title='New & Notable'/>}
             <ContentImages imgs={stateImageData} path={path}/>
             <BtnDiscoverMore />
