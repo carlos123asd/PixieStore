@@ -1,10 +1,9 @@
 .btngroumycollection {
   text-align: -webkit-right;
-  margin-right: 0.6em;
+  margin-left: 0.6em;
   margin-top: 0.6em;
   position: absolute;
   z-index: 1000;
-  right: 0;
 }
 .btngroumycollection__edit, .btngroumycollection__download {
   width: 40px;

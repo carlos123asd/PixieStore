@@ -1,1 +1,1 @@
-{"version":3,"sources":["btnfavorite.scss","btnfavorite.css"],"names":[],"mappings":"AAAA;EACI,kBAAA;EACA,aAAA;EACA,MAAA;EACA,OAAA;EACA,iBAAA;EACA,WAAA;EACA,YAAA;EACA,qBAAA;EACA,kBAAA;ACCJ;ADAI;EACI,WAAA;EACA,YAAA;ACER","file":"btnfavorite.css"}
+{"version":3,"sources":["btnfavorite.scss","btnfavorite.css"],"names":[],"mappings":"AAAA;EACI,yBAAA;EACA,QAAA;EACA,kBAAA;EACA,iBAAA;EACA,kBAAA;EACA,aAAA;EAEA,WAAA;EACA,YAAA;EACA,qBAAA;EACA,kBAAA;ACAJ;ADCI;EACI,WAAA;EACA,YAAA;ACCR","file":"btnfavorite.css"}
