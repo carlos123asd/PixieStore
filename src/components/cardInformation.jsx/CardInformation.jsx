@@ -31,7 +31,7 @@ export default function CardInformation({img}) {
                     </div>
                     <div>
                         <span className='information__details__tit'>Published date</span>
-                        <span className='information__details__date'>{img.datepublication}</span>
+                        <span className='information__details__date'>{img.datepublication.split('T')[0]}</span>
                     </div>
             </div>
         </div>

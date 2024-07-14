@@ -12,7 +12,10 @@
   background-color: rgba(217, 217, 217, 0.31);
   align-content: center;
   margin-bottom: 0.5em;
+}
+.btngroumycollection__edit:hover, .btngroumycollection__download:hover {
   cursor: pointer;
+  scale: 1.1;
 }
 .btngroumycollection__edit__img, .btngroumycollection__download__img {
   display: block;

@@ -1,5 +1,16 @@
 .duoSlider {
-  width: 50% !important;
+  width: 100%;
   margin: 0 auto;
   display: none;
+  text-align: center;
+  margin-top: 1em;
+  font-family: "inter-medium";
+}
+.duoSlider__spanwidth {
+  display: inline-block;
+  vertical-align: top;
+}
+.duoSlider__spanheight {
+  display: inline-block;
+  vertical-align: top;
 }/*# sourceMappingURL=duoslider.css.map */

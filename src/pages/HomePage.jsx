@@ -9,8 +9,7 @@ import BtnDiscoverMore from '../components/btndiscovermore/BtnDiscoverMore'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { store } from '../app/store'
-import { resetStyle } from "../features/style/styleContentImageSlice";
+import { activateAllBorderNav, resetStyle } from "../features/style/styleContentImageSlice";
 import { imagesSearchThunk } from '../features/images/imagesSearchThunk'
 import { setStateSelect } from '../features/select/selectSlice'
 
@@ -23,6 +22,7 @@ export function HomePage(){
     useEffect(() => {
         dispatch(resetStyle());
         dispatch(setStateSelect('none'))
+        dispatch(activateAllBorderNav())
     },[])
 
     const path = useLocation().pathname;

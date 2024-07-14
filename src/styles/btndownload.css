@@ -18,4 +18,8 @@
   border-radius: 0.75em;
   font-family: "inter-medium";
   font-size: 0.88rem;
+}
+.download__btn:hover {
+  cursor: pointer;
+  border: 2px solid black;
 }/*# sourceMappingURL=btndownload.css.map */

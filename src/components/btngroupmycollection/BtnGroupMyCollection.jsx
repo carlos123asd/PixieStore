@@ -1,21 +1,33 @@
 import imgEdit from '../../assets/image/edit.svg'
 import imgDownload from '../../assets/image/download.svg'
+import { setData, setOpen } from '../../features/modal/modalSlice'
+import { useDispatch } from 'react-redux'
+import { downloadThunk } from '../../features/images/downloadThunk'
 
 export default function BtnGroupMyCollection({id}){
 
     const imgDownLoad = JSON.parse(localStorage.getItem(id))
+    const dispatch = useDispatch()
+
+    const handleOpen = () => {
+        dispatch(setOpen(true))
+        console.log(id)
+        dispatch(setData(id))
+    }
+
+    const downloadImg = () => {
+        dispatch(downloadThunk(imgDownLoad[0].urls.full))//photo.links.download_location
+    }
 
     return <>
         <div className="btngroumycollection">
-            <div className="btngroumycollection__edit">
+            <div onClick={handleOpen} className="btngroumycollection__edit">
                 <img src={imgEdit} alt='I like it' className='btngroumycollection__edit__img'/>
             </div>
 
-            <a href={imgDownLoad[0].links.download} target='_blanck' download>
-                <div className="btngroumycollection__download">
-                    <img src={imgDownload} alt='Download' className='btngroumycollection__download__img'/>
-                </div>
-            </a>
+            <div className="btngroumycollection__download" onClick={downloadImg}>
+                <img src={imgDownload} alt='Download' className='btngroumycollection__download__img'/>
+            </div>
         </div>
     </>
 }

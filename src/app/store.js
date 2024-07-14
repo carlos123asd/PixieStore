@@ -4,6 +4,7 @@ import styleContentImageSlice from '../features/style/styleContentImageSlice';
 import imagesChangesSlice from '../features/images/imagesChangesSlice';
 import imageSelectedSlice from '../features/imageSelected/imageSelectedSlice';
 import selectSlice from '../features/select/selectSlice';
+import modalSlice from '../features/modal/modalSlice';
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         styleImages: styleContentImageSlice,
         imageChange: imagesChangesSlice,
         imageSelected: imageSelectedSlice,
-        select: selectSlice
+        select: selectSlice,
+        modal: modalSlice
     }
 });

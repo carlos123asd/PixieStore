@@ -11,5 +11,9 @@
         align-content: center;
         font-family: 'inter-bold';
         font-size: 0.88rem;
+        &:hover{
+            cursor: pointer;
+            border: 2px solid black;
+        }
     }
 }

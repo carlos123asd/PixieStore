@@ -32,6 +32,7 @@ import './styles/headerimgselected.css'
 import './styles/slice.css'
 import './styles/views.css'
 import './styles/duoslider.css'
+import './styles/modal.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>

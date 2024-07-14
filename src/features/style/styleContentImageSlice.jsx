@@ -11,8 +11,12 @@ const styleContentImageSlice = createSlice({
         selectWidth: {
             display: 'none'
         },
-        selectHeigth:{
+        selectHeigth: {
             display: 'none'
+        },
+        btnNav: {
+            home: false,
+            all: false
         }
     },
     reducers:{
@@ -49,9 +53,32 @@ const styleContentImageSlice = createSlice({
             state.selectHeigth = {
                 display: 'none'
             }
+        },
+        activeBorderNav(state){
+            state.btnNav.home = true
+        },
+        desactiveBorderNav(state){
+            state.btnNav.home = false
+        },
+        desactiveAllBorderNav(state){
+            state.btnNav.home = false
+            state.btnNav.all = true
+        },
+        activateAllBorderNav(state){
+            state.btnNav.all = false
         }
     }
 });
 //129em
 export default styleContentImageSlice.reducer;
-export const { changeStyle, resetStyle, selectChangeWidthShow, selectChangeWidthHide, selectChangeHeigthShow, selectChangeHeigthHide  } = styleContentImageSlice.actions;
+export const { 
+    changeStyle,
+    resetStyle, 
+    selectChangeWidthShow, 
+    selectChangeWidthHide, 
+    selectChangeHeigthShow, 
+    selectChangeHeigthHide, 
+    activeBorderNav, 
+    desactiveBorderNav, 
+    desactiveAllBorderNav,
+    activateAllBorderNav } = styleContentImageSlice.actions;

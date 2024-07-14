@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import Search from "../components/search/Search";
 import Subtitles from "../components/subtitles/Subtitles";
 import Description from "../components/description/Description";
-import { store } from "../app/store";
 import { useDispatch, useSelector } from "react-redux";
 import CardInformation from "../components/cardInformation.jsx/CardInformation";
 import BtnDownload from "../components/btndownload/BtnDownload";
@@ -15,6 +14,7 @@ import { getRandomPhotosSlider } from "../features/images/imagesSlice";
 import Footer from "../components/footer/Footer";
 import Tags from '../components/tags/Tags'
 import { setStateSelect } from "../features/select/selectSlice";
+import { desactiveAllBorderNav } from "../features/style/styleContentImageSlice";
 
 export function ImageSelected(){
     const [width, setWidth] = useState(window.innerWidth);
@@ -56,6 +56,7 @@ export function ImageSelected(){
             dispatch(getRandomPhotosSlider(dataRandomImage));
         }
         dispatch(setStateSelect('none'))
+        dispatch(desactiveAllBorderNav())
     }, [])
 
     const data = useSelector(state => state.imageSelected.data);
@@ -98,7 +99,7 @@ export function ImageSelected(){
                 <Subtitles title={'Author'}/>
                 <CardInformation img={dataCardInformation}/>
                 <Subtitles title={'Download'}/>
-                <BtnDownload />
+                <BtnDownload imgdownload={data}/>
                 <BtnAddFavorite item={data}/>
             </div></>}
             <Subtitles title={'Tags'} />

@@ -19,7 +19,7 @@ export default function BtnGroupHome({imgs, id}){
         const imgDownLoad = imgs.filter(img => {
             return img.id === id
         });
-        dispatch(downloadThunk(imgDownLoad[0].links.download_location))//photo.links.download_location
+        dispatch(downloadThunk(imgDownLoad[0].urls.full))//photo.links.download_location
     }
 
     return <>

@@ -10,19 +10,36 @@ import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { activeHeigth, activeWidth, setMaxSelect, setMinSelect, setStateSelect } from "../features/select/selectSlice"
+import { activateAllBorderNav } from "../features/style/styleContentImageSlice"
+import { Modal } from "@mui/material"
+import { setOpen } from "../features/modal/modalSlice"
 
 export function MyCollection(){
     const [width, setWidth] = useState(window.innerWidth);
     const [rangewidth,setRangewidth] = useState([20, 37])
     const [rangeheigth,setRangeheigth] = useState([20, 37])
     const dispatch = useDispatch();
+    const SelectorSetOper = useSelector(state => state.modal.open)
+    const [description,setDescription] = useState(''); 
 
-    window.addEventListener('resize', () => {
-        setWidth(window.innerWidth);
-    });
-    
+
+    //imagenes locales EVALUAR LOS DATOS SEGUN ESTADO VER SI VIENE DE UN FILTRO O NO
+    const imgsLocal = [];
+    const selectorStateSelect = useSelector(state => state.select.state);
+    if(selectorStateSelect === 'none'){
+        for (let index = 0; index < localStorage.length; index++) {
+            imgsLocal.push(JSON.parse(localStorage.getItem(localStorage.key(index))));
+        }
+    }
+  
+    //recargar al eliminar fotos
+    useSelector(state => state.imageChange.lengthlocal);
+   
+    //carga los styles show/hide selects -> Sliders
+    const stylewidth = useSelector(state => state.styleImages.selectWidth);
+    const styleheigth = useSelector(state => state.styleImages.selectHeigth);
+
     const path = useLocation().pathname;
-
     const style = {
         widthcontent:{
            width: '56.25em'
@@ -32,8 +49,14 @@ export function MyCollection(){
         }
     }
 
+    window.addEventListener('resize', () => {
+        setWidth(window.innerWidth);
+    });
+
     useEffect(() => {
         dispatch(setStateSelect('none'))
+        dispatch(activateAllBorderNav())
+        dispatch(setOpen(false))
     }, [])
 
     const rangeWidthHandle = (event, action) => {
@@ -50,31 +73,64 @@ export function MyCollection(){
         dispatch(activeHeigth())
     }
 
-    //imagenes locales EVALUAR LOS DATOS SEGUN ESTADO VER SI VIENE DE UN FILTRO O NO
-    const imgsLocal = [];
-    const selectorStateSelect = useSelector(state => state.select.state);
-    if(selectorStateSelect === 'none'){
-        for (let index = 0; index < localStorage.length; index++) {
-            imgsLocal.push(JSON.parse(localStorage.getItem(localStorage.key(index))));
-        }
+    const handleClose = () => {
+        dispatch(setOpen(false))
     }
     
-  
-    //recargar al eliminar fotos
-    useSelector(state => state.imageChange.lengthlocal);
-   
-    //carga los styles show/hide selects -> Sliders
-    const stylewidth = useSelector(state => state.styleImages.selectWidth);
-    const styleheigth = useSelector(state => state.styleImages.selectHeigth);
+    const selectIdEditModal = useSelector(state => state.modal.id)
+    let imgModal
+    if(SelectorSetOper){
+        imgModal = JSON.parse(localStorage.getItem(selectIdEditModal))
+    }
+    console.log(imgModal)
+
+    const saveDescription = () => {
+        console.log(description)
+        const imgChangedDescription = imgModal.map((element) => {
+            return {
+                ...element,
+                description: description
+            }
+        });
+        localStorage.setItem(selectIdEditModal,JSON.stringify(imgChangedDescription))
+        handleClose()
+    }
+
+    const textAreaValue = (descriptionval) => {
+        setDescription(descriptionval)
+    }
 
     return <>
-            <Nav />
+            <Nav  path={path}/>
+            <Modal 
+            open={SelectorSetOper}
+            onClose={handleClose}
+            aria-labelledby="Editar Descripcion"
+            aria-describedby="Editar la descripcion de una imagen guardada en favoritos"
+            >
+                <Box className="modal">
+                    <div className="modal__content">
+                         <h1 className="modal__content__tit">Edit Description</h1>
+                         <span className="modal__content__span">Edit your favorite image</span>
+                    </div>
+
+                    <div className="modal__contentimg">
+                    {SelectorSetOper ? <img className="modal__contentimg__img" src={imgModal[0].urls.regular} alt={`editable description image ${imgModal[0].alt_description}`} ></img> : <></>}
+                    </div>
+                    
+                    <div className="modal__description">
+                    {SelectorSetOper ? <textarea rows="6" cols="33" onChange={(e) => textAreaValue(e.target.value)} className="modal__description__area">{imgModal[0].alt_description}</textarea> : <></>}
+                        <div className="modal__description__btn" onClick={saveDescription}>Save</div>
+                    </div>
+                </Box>    
+            </Modal>
             <div className="view">
                 <HeaderCollection />
                 {(width < 1000) ? <Search path={path} placeholder='Search by description'/> : <Search path={path} placeholder='Search by description' style={style} width={width}/>}
                 <div>
                     <SelectFilter />
                     <Box className="duoSlider" style={stylewidth}>
+                        <span className="duoSlider__spanwidth">Min Width ({rangewidth[0]}px)</span>
                         <Slider 
                         getAriaLabel={() => 'Width range'}
                         value={rangewidth}
@@ -83,9 +139,12 @@ export function MyCollection(){
                         getAriaValueText={() => rangewidth}
                         min={500}
                         max={10000}
+                        style={{display: 'inline-block', width: '30%', margin: '0 1em'}}
                         />
+                        <span className="duoSlider__spanheight">Max Width ({rangewidth[1]}px)</span>
                     </Box>
                     <Box className="duoSlider" style={styleheigth}>
+                        <span className="duoSlider__spanwidth">Min Height ({rangeheigth[0]}px)</span>
                         <Slider 
                         getAriaLabel={() => 'Heigth range'}
                         value={rangeheigth}
@@ -94,7 +153,9 @@ export function MyCollection(){
                         getAriaValueText={() => rangeheigth}
                         min={500}
                         max={10000}
+                        style={{display: 'inline-block', width: '30%',  margin: '0 1em'}}
                         />
+                        <span className="duoSlider__spanwidth">Max Height ({rangeheigth[1]}px)</span>
                     </Box>
                 </div>
                 <ContentImages imgs={imgsLocal} path={path}/>
