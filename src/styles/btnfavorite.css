@@ -10,6 +10,9 @@
   align-content: center;
   text-align: center;
 }
+.favorite:hover {
+  cursor: pointer;
+}
 .favorite__img {
   width: 25px;
   height: 35px;

@@ -1,45 +1,86 @@
+import { useDispatch, useSelector } from "react-redux";
+import { selectChangeHeigthHide, selectChangeHeigthShow, selectChangeWidthHide, selectChangeWidthShow } from "../../features/style/styleContentImageSlice";
+import { desactiveSlice, setDataFilters, setStateSelect } from "../../features/select/selectSlice";
+
 export default function SelectFilter(){
-    const normal = [];
-    let trend = [];
-    const width = [];
-    const heigth = [];
+    const dispatch = useDispatch();
+    const selectorWidthMax = useSelector(state => state.select.max)
+    const selectorWidthMin = useSelector(state => state.select.min)
+    const selectorHeigthMax = useSelector(state => state.select.max)
+    const selectorHeigthMin = useSelector(state => state.select.min)
+    const selectorStateSelect = useSelector(state => state.select.state)
+    const dataLocalStorage = []
+    for(let i = 0; i < localStorage.length; i++){
+        dataLocalStorage.push((JSON.parse(localStorage.getItem(localStorage.key(i))))[0])
+    }
+    let resultSelect = [];
+
     const selected = (value) => {
-         //order normal
-         let aux = 0
-        for(let i = 0; i < localStorage.length; i++){
-            normal.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
-        }
-        console.log('STANDAR',normal);
-        //localStorage.clear
         if(value === 'normal'){
-            //setStorage(normal,'normal')
+            dispatch(selectChangeHeigthHide());
+            dispatch(selectChangeWidthHide());
+            dispatch(desactiveSlice());
+            dispatch(setStateSelect('normal'));
         }else if(value === 'trend'){
-            for (let i = 0; i < normal.length; i++) {
-                trend.push(normal[i][0].likes)
-            }
-            trend = trend.sort(function(a, b){return b - a});
-            console.log(trend);
-            setStorage(trend,'trend')
+            dispatch(selectChangeHeigthHide());
+            dispatch(selectChangeWidthHide());
+            dispatch(desactiveSlice());
+            dispatch(setStateSelect('trend'));
+        }else if(value === 'width') {
+            dispatch(selectChangeWidthShow());
+            dispatch(selectChangeHeigthHide());
+            dispatch(setStateSelect('width'));
+        }else if(value === 'heigth'){
+            dispatch(selectChangeHeigthShow());
+            dispatch(selectChangeWidthHide());
+            dispatch(setStateSelect('heigth'));
         }
     }
 
-    const setStorage = (date,action) => {
+    if(selectorStateSelect === 'normal'){
+        resultSelect = dataLocalStorage
+        dispatch(setDataFilters(resultSelect));
+    }else if(selectorStateSelect === 'trend'){
         let aux = []
-        if(action === 'normal'){
-            for(let i = 0; i < date.length; i++){
-                //localStorage.setItem(date[i][0].id,date[i])
-            }
-        }else if(action === 'trend'){
-            for(let i = 0; i < normal.length; i++){
-                for(let j = 0; j < date.length; j++){
-                    if(date[j] === normal[i][0].likes){
-                        console.log(normal[i][0]);
-                        aux.push(normal[i][0]);
-                    }
+        let aux2 = []
+        let aux3 = []
+        let trend = [];
+        //ORDENAMOS EL ARRAY CON LIKE
+        for (let i = 0; i < dataLocalStorage.length; i++) {
+            trend.push([dataLocalStorage[i].likes,dataLocalStorage[i].id]) 
+            aux.push(dataLocalStorage[i].likes)
+        }
+        aux = aux.sort(function(a, b){return b - a});
+
+        //ORDENAMOS EL ARRAY CON LIKES Y ID
+        for(let i = 0; i < aux.length; i++){
+            for(let j = 0; j < trend.length; j++){
+                if(trend[j][0] === aux[i]){
+                    aux2.push(trend[j])
                 }
             }
-        }//CONSEGUIR TREND
-        console.log('AUXILIAR',aux);
+        }
+
+        //ORDENAMOS EL RESULTADO EN OBJETOS
+        for(let i = 0; i < aux2.length; i++){
+            for(let j = 0; j < dataLocalStorage.length; j++){
+                if(dataLocalStorage[j].likes === aux2[i][0] && dataLocalStorage[j].id === aux2[i][1]){
+                    aux3.unshift(dataLocalStorage[j])
+                }
+            }
+        }
+        resultSelect = aux3
+        dispatch(setDataFilters(resultSelect));
+    }else if(selectorStateSelect === 'width'){
+        resultSelect = dataLocalStorage.filter((imgItemData) => {
+            return imgItemData.width > selectorWidthMin && imgItemData.width < selectorWidthMax
+        })
+        dispatch(setDataFilters(resultSelect));
+    }else if(selectorStateSelect === 'heigth'){
+        resultSelect = dataLocalStorage.filter((imgItemData) => {
+            return imgItemData.height > selectorHeigthMin && imgItemData.height < selectorHeigthMax
+        })
+        dispatch(setDataFilters(resultSelect));
     }
 
     return <>

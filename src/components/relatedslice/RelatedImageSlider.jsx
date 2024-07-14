@@ -4,13 +4,17 @@ import 'swiper/swiper-bundle.css'
 import { useNavigate } from 'react-router-dom';
 import { store } from '../../app/store';
 import { addSelectData } from '../../features/imageSelected/imageSelectedSlice';
+import { useDispatch } from 'react-redux';
 
 export default function RelatedImageSlider({imgs}) {
 
+    console.log(imgs)
+
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const imageSelectedHandle = (id) => {
-        store.dispatch(addSelectData(imgs.filter((img) => {
+        dispatch(addSelectData(imgs.filter((img) => {
             return img.id === id
         })))
     }
@@ -27,6 +31,7 @@ export default function RelatedImageSlider({imgs}) {
             className='slider'
         >
             {imgs.map((img) => {
+                console.log(img)
                 return <>
                     <SwiperSlide onClick={() => {
                                     imageSelectedHandle(img.id)

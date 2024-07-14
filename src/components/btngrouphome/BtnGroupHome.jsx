@@ -1,22 +1,26 @@
 import imgLike from '../../assets/image/like.svg'
 import imgDownload from '../../assets/image/download.svg'
 import { changeValueLengthLocal } from '../../features/images/imagesChangesSlice';
-import { store } from '../../app/store';
-
+import { downloadThunk } from '../../features/images/downloadThunk';
+import { useDispatch } from 'react-redux'
 export default function BtnGroupHome({imgs, id}){
-    
+    const dispatch = useDispatch()
+
     const clickHandle = () => {
         let imageFavorite = imgs.filter(img => {
             return img.id === id
         });
         localStorage.setItem(id,JSON.stringify(imageFavorite));
-        store.dispatch(changeValueLengthLocal(localStorage.length));
+        dispatch(changeValueLengthLocal(localStorage.length));
     }
 
-    const imgDownLoad = imgs.filter(img => {
+    
+    const downloadImg = () => {
+        const imgDownLoad = imgs.filter(img => {
             return img.id === id
         });
-    
+        dispatch(downloadThunk(imgDownLoad[0].links.download_location))//photo.links.download_location
+    }
 
     return <>
         <div className="btngrouphome">
@@ -24,11 +28,10 @@ export default function BtnGroupHome({imgs, id}){
                 <img src={imgLike} alt='I like it' className='btngrouphome__like__img'/>
             </div>
 
-            <a href={imgDownLoad[0].links.download} target='_blanck' download>
-                <div className="btngrouphome__download">
-                    <img src={imgDownload} alt='Download' className='btngrouphome__download__img'/>
-                </div>
-            </a>
+            
+            <div className="btngrouphome__download" onClick={downloadImg}>
+                <img src={imgDownload} alt='Download' className='btngrouphome__download__img'/>
+            </div>
         </div>
     </>
 }

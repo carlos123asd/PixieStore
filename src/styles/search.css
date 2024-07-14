@@ -41,6 +41,9 @@
   vertical-align: top;
   margin-top: 0.45em;
 }
+.search__btn:hover {
+  cursor: pointer;
+}
 
 @media only screen and (min-width: 1000px) {
   .search {

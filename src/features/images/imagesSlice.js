@@ -7,23 +7,15 @@ const randomImagesSlice = createSlice({
         status: 'idle',
         data: [],
         error: null,
-        randomPhotos: [],
-        search: {
-            state: false,
-            keyword: ''
-        }
+        randomPhotos: []
     },
     reducers: {
         getRandomPhotosSlider(state, action){
-            for(let i = 0; i <= 10; i+=2){
-                state.randomPhotos.push(action.payload[i]);
-            }
+            state.randomPhotos = action.payload;
         },
-        setSearch(state,action){
-            state.search.state = action.payload
-        },
-        setWord(state,action){
-            state.search.keyword = action.payload
+        updatePagination(state,action){
+            state.pagination.total = action.payload[0]
+            state.pagination.page = action.payload[1]
         }
     },
     extraReducers: (builder) => {
@@ -42,4 +34,4 @@ const randomImagesSlice = createSlice({
 });
 
 export default randomImagesSlice.reducer;
-export const { getRandomPhotosSlider,setSearch,setWord } = randomImagesSlice.actions
+export const { getRandomPhotosSlider,updatePagination } = randomImagesSlice.actions

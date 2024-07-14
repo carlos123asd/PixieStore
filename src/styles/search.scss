@@ -39,6 +39,9 @@
         font-family: 'inter-bold';
         vertical-align: top;
         margin-top: .45em;
+        &:hover{
+            cursor: pointer;
+        }
     }
 }
 

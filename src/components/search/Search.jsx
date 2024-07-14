@@ -1,17 +1,21 @@
 import { useState } from 'react'
-import { store } from '../../app/store'
 import imgSearch from '../../assets/image/search.svg'
-import { setSearch } from '../../features/images/imagesSlice';
-import { setWord } from '../../features/images/imagesSlice';
-import { useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
+import { imagesSearchThunk } from '../../features/images/imagesSearchThunk';
+import { useNavigate } from 'react-router-dom';
 
 export default function Search({placeholder, width, style, path}){
 
     const [keyword,setKeyword] = useState('');
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate();
+
     const clickSearchHandle = () => {
-        store.dispatch(setWord(keyword))
-        store.dispatch(setSearch(true))
+        dispatch(imagesSearchThunk(keyword))
+        if(path === '/profile' || path === '/myCollection'){
+            navigate('/')
+        }
     };
 
     if(width >= 1000){

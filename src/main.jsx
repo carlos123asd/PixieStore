@@ -30,9 +30,10 @@ import './styles/btndownload.css'
 import './styles/btnaddfavorite.css'
 import './styles/headerimgselected.css'
 import './styles/slice.css'
+import './styles/views.css'
+import './styles/duoslider.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
@@ -41,6 +42,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/profile' element={<ImageSelected />}/>
         </Routes>
       </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
 )

@@ -5,8 +5,7 @@
        columns: 4;
   -moz-column-gap: 20px;
        column-gap: 20px;
-  mask-image: linear-gradient(to top, transparent 1%, black 16%);
-  -webkit-mask-image: linear-gradient(to top, transparent 1%, black 16%);
+  padding-top: 1em;
 }
 .images__image {
   width: 100%;

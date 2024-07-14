@@ -8,14 +8,20 @@
     padding: 0 1.2em;
     font-family: 'inter-medium';
     margin-left: 1em;
-    margin-top: 1.8em;
+    margin-top: .5em;
     background-color: #F0F2F5;
     &__span{
         font-size: 0.88rem;
     }
     &:hover{
         border: 2px solid black;
+        scale: 1.2;
+        cursor: pointer;
     }
+}
+
+.content__tag{
+    margin-top: 1em;
 }
 
 @media only screen and (min-width:1000px){
@@ -29,6 +35,6 @@
         padding-left: 2em;
     }
     .tag{
-        margin-top: 0;
+        margin-top: 1em;
     }
 }

@@ -7,6 +7,12 @@ const styleContentImageSlice = createSlice({
             //height: 'auto',
             mask: 'linear-gradient(to top, transparent 1%, black 16%)',
             webkit: 'linear-gradient(to top, transparent 1%, black 16%)'
+        },
+        selectWidth: {
+            display: 'none'
+        },
+        selectHeigth:{
+            display: 'none'
         }
     },
     reducers:{
@@ -23,9 +29,29 @@ const styleContentImageSlice = createSlice({
                 mask: 'linear-gradient(to top, transparent 1%, black 16%)',
                 webkit: 'linear-gradient(to top, transparent 1%, black 16%)'
             }
+        },
+        selectChangeWidthShow(state){
+            state.selectWidth = {
+                display: 'block'
+            }
+        },
+        selectChangeWidthHide(state){
+            state.selectWidth = {
+                display: 'none'
+            }
+        },
+        selectChangeHeigthShow(state){
+            state.selectHeigth = {
+                display: 'block'
+            }
+        },
+        selectChangeHeigthHide(state){
+            state.selectHeigth = {
+                display: 'none'
+            }
         }
     }
 });
 //129em
 export default styleContentImageSlice.reducer;
-export const { changeStyle, resetStyle } = styleContentImageSlice.actions;
+export const { changeStyle, resetStyle, selectChangeWidthShow, selectChangeWidthHide, selectChangeHeigthShow, selectChangeHeigthHide  } = styleContentImageSlice.actions;

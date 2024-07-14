@@ -11,6 +11,9 @@
   align-content: center;
   color: black;
 }
+.btndiscovermore:hover {
+  cursor: pointer;
+}
 .btndiscovermore__span {
   font-family: "inter-bold";
   font-size: 0.88rem;

@@ -3,7 +3,7 @@ import Pagination from "../pagination/Pagination";
 import { store } from "../../app/store";
 import { changeStyle } from "../../features/style/styleContentImageSlice";
 
-export default function BtnDiscoverMore(){
+export default function BtnDiscoverMore({imgsNum}){
     const [hidden,setHidden] = useState({});
 
     const clickHandle = () => {
@@ -17,6 +17,6 @@ export default function BtnDiscoverMore(){
         <div  style={hidden} onClick={clickHandle} className="btndiscovermore">
             <span className="btndiscovermore__span">Discover more</span>
         </div>
-        {(hidden.hasOwnProperty('display')) ? <Pagination /> : null}
+        {(hidden.hasOwnProperty('display')) ? <Pagination imgsNum={imgsNum}/> : null}
     </>
 }

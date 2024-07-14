@@ -5,7 +5,7 @@ import Search from "../components/search/Search";
 import Subtitles from "../components/subtitles/Subtitles";
 import Description from "../components/description/Description";
 import { store } from "../app/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CardInformation from "../components/cardInformation.jsx/CardInformation";
 import BtnDownload from "../components/btndownload/BtnDownload";
 import BtnAddFavorite from "../components/btnaddfavorite/BtnAddFavorite";
@@ -14,6 +14,7 @@ import RelatedImageSlider from "../components/relatedslice/RelatedImageSlider";
 import { getRandomPhotosSlider } from "../features/images/imagesSlice";
 import Footer from "../components/footer/Footer";
 import Tags from '../components/tags/Tags'
+import { setStateSelect } from "../features/select/selectSlice";
 
 export function ImageSelected(){
     const [width, setWidth] = useState(window.innerWidth);
@@ -21,6 +22,7 @@ export function ImageSelected(){
         setWidth(window.innerWidth);
     });
     const path = useLocation().pathname;
+    const dispatch = useDispatch()
     const styleImageSelectedNav = {
         search: {
             content:{
@@ -47,15 +49,20 @@ export function ImageSelected(){
     }
 
     const dataRandomImage = useSelector(state => state.images.data);
-
+   
+//AQUII
     useEffect(() => {
-        store.dispatch(getRandomPhotosSlider(dataRandomImage));
+        if(dataRandomImage.length !== 0){
+            dispatch(getRandomPhotosSlider(dataRandomImage));
+        }
+        dispatch(setStateSelect('none'))
     }, [])
 
     const data = useSelector(state => state.imageSelected.data);
 
     const sixRandomImages = useSelector(state => state.images.randomPhotos);
     
+    console.log(data);
     const dataCardInformation = {
         img: data[0].urls.regular,
         profileimage: data[0].user.profile_image.medium,
@@ -71,33 +78,39 @@ export function ImageSelected(){
 
     return <>
         <Nav width={width} style={styleImageSelectedNav} path={path}/>
-        {width < 1000 ? <Search /> : <></>}
-        
-        {width < 1000 ?  <>
-        <HeaderImageSelected img={dataCardInformation.img} tit={dataCardInformation.alt}/>
-        <Subtitles title={'Photo Description'}/>
-        <Description description={dataCardInformation.description} alt={dataCardInformation.alt}/>
-        <Subtitles title={'Author'}/>
-        <CardInformation img={dataCardInformation}/>
-        <Subtitles title={'Download'}/>
-        <BtnDownload />
-        <BtnAddFavorite /></> : 
-        <><div className="contentselected">
+        <div className="view">
+            {width < 1000 ? <Search path={path}/> : <></>}
+            {width < 1000 ?  <>
             <HeaderImageSelected img={dataCardInformation.img} tit={dataCardInformation.alt}/>
             <Subtitles title={'Photo Description'}/>
             <Description description={dataCardInformation.description} alt={dataCardInformation.alt}/>
-        </div>
-        <div className="contentselectedinfo">
             <Subtitles title={'Author'}/>
             <CardInformation img={dataCardInformation}/>
             <Subtitles title={'Download'}/>
             <BtnDownload />
-            <BtnAddFavorite />
-        </div></>}
-        <Subtitles title={'Tags'} />
-        <Tags />
-        <Subtitles title={'More Images'}/>
-        <RelatedImageSlider imgs={sixRandomImages}/>
-        <Footer />
+            <BtnAddFavorite item={data}/></> : 
+            <><div className="contentselected">
+                <HeaderImageSelected img={dataCardInformation.img} tit={dataCardInformation.alt}/>
+                <Subtitles title={'Photo Description'}/>
+                <Description description={dataCardInformation.description} alt={dataCardInformation.alt}/>
+            </div>
+            <div className="contentselectedinfo">
+                <Subtitles title={'Author'}/>
+                <CardInformation img={dataCardInformation}/>
+                <Subtitles title={'Download'}/>
+                <BtnDownload />
+                <BtnAddFavorite item={data}/>
+            </div></>}
+            <Subtitles title={'Tags'} />
+            <Tags />
+            {
+              (dataRandomImage.length !== 0) ?<>
+                <Subtitles title={'More Images'}/>
+                <RelatedImageSlider imgs={sixRandomImages}/>
+              </>
+              : <></>
+            }
+            <Footer />
+        </div>
     </>
 }

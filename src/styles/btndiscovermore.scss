@@ -8,7 +8,10 @@
     margin-bottom: 4em;
     text-align: center;
     align-content: center;
-    color: black;
+    color: black; 
+    &:hover{
+        cursor: pointer;
+    }
     &__span{
         font-family: 'inter-bold';
         font-size: 0.88rem;

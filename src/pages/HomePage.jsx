@@ -1,7 +1,6 @@
 import Nav from '../components/nav/Nav'
 import Banner from '../components/banner/Banner'
 import Search from '../components/search/Search'
-import SelectFilter from '../components/select/SelectFilter'
 import ContentImages from '../components/contentimages/ContentImages'
 import Footer from '../components/footer/Footer'
 import Subtitles from '../components/subtitles/Subtitles'
@@ -13,7 +12,7 @@ import { useLocation } from 'react-router-dom'
 import { store } from '../app/store'
 import { resetStyle } from "../features/style/styleContentImageSlice";
 import { imagesSearchThunk } from '../features/images/imagesSearchThunk'
-import { setSearch } from '../features/images/imagesSlice'
+import { setStateSelect } from '../features/select/selectSlice'
 
 export function HomePage(){
     const [width, setWidth] = useState(window.innerWidth);
@@ -22,7 +21,8 @@ export function HomePage(){
     });
 
     useEffect(() => {
-        store.dispatch(resetStyle());
+        dispatch(resetStyle());
+        dispatch(setStateSelect('none'))
     },[])
 
     const path = useLocation().pathname;
@@ -33,40 +33,32 @@ export function HomePage(){
     //SELECTOR RANDOM
     const stateImageData = useSelector(state => state.images.data);
     const stateImageStatus = useSelector(state => state.images.status);
-    //SELECTOR SEARCH
-    const stateImageSearch = useSelector(state => state.images.search.state);
-    const selectoKeyWord = useSelector(state => state.images.search.keyword);
     
     useEffect(() =>{
-        console.log('stateImageStatus',stateImageStatus)
         if(stateImageStatus === 'idle'){
-            if(stateImageSearch === false){
-                console.log('DISPARA RANDOM');
                 dispatch(imagesSearchThunk());
-            }else{
-                dispatch(imagesSearchThunk(selectoKeyWord));
-                console.log('selectorkeyword',selectoKeyWord)
-            }
         }else if(stateImageStatus === 'fulfilled'){
             setLoading(false);
         }
-    },[stateImageStatus, selectoKeyWord])
+    },[stateImageStatus])
 
-    //console.log('Images Search o Random',stateImageData);
+    console.log('Images Search',stateImageData);
 
     if(loading){ 
         return <h1>Loading...</h1>
     }else{
         return <>
             <Nav width={width} path={'/'}/>
-            <Banner width={width}/>
-            {(width < 1000) ? <Search placeholder='Search free high-resolution photos'/> : null}
-            {(width < 1000) ? null : <Subtitles title='Trending searches'/>}
-            <Tags />
-            {(width < 1000) ? null : <Subtitles title='New & Notable'/>}
-            <ContentImages imgs={stateImageData} path={path}/>
-            <BtnDiscoverMore />
-            <Footer width={width}/>
+            <div className='view'>
+                <Banner width={width}/>
+                {(width < 1000) ? <Search placeholder='Search free high-resolution photos'/> : null}
+                {(width < 1000) ? null : <Subtitles title='Trending searches'/>}
+                <Tags />
+                {(width < 1000) ? null : <Subtitles title='New & Notable'/>}
+                <ContentImages imgs={stateImageData} path={path}/>
+                <BtnDiscoverMore imgsNum={stateImageData.length}/>
+                <Footer width={width}/>
+            </div>
         </>
     }
 }

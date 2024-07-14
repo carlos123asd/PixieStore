@@ -3,8 +3,10 @@ import imgLike from '../../assets/image/like.svg'
 import imgHome from '../../assets/image/home.svg'
 import { NavLink } from 'react-router-dom'
 import Search from '../search/Search'
+
+
 export default function Nav({width, style, path}) {
-    return <>
+    return<>
         <nav className="nav">
             {(width >= 1000 && path === '/profile') ? <div className="nav__name" style={style.name.content}>
                 <img src={imgTitle} alt="logo" className="nav__name__image" />
