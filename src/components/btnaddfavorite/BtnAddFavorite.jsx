@@ -1,7 +1,10 @@
+import notification from '../../features/notification/toastify'
+
 export default function BtnAddFavorite({item}){
 
     const clickHandle = () => {
         localStorage.setItem(item[0].id,JSON.stringify(item));
+        notification('Image save correctly',2000);
     }
 
     return <>

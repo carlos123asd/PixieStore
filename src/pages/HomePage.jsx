@@ -5,13 +5,13 @@ import ContentImages from '../components/contentimages/ContentImages'
 import Footer from '../components/footer/Footer'
 import Subtitles from '../components/subtitles/Subtitles'
 import Tags from '../components/tags/Tags'
-import BtnDiscoverMore from '../components/btndiscovermore/BtnDiscoverMore'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { activateAllBorderNav, resetStyle } from "../features/style/styleContentImageSlice";
 import { imagesSearchThunk } from '../features/images/imagesSearchThunk'
 import { setStateSelect } from '../features/select/selectSlice'
+import Pagination from '../components/pagination/Pagination'
 
 export function HomePage(){
     const [width, setWidth] = useState(window.innerWidth);
@@ -36,13 +36,22 @@ export function HomePage(){
     
     useEffect(() =>{
         if(stateImageStatus === 'idle'){
-                dispatch(imagesSearchThunk());
+                dispatch(imagesSearchThunk({
+                    type: 'random',
+                    'pag': 1
+                }));
         }else if(stateImageStatus === 'fulfilled'){
             setLoading(false);
         }
     },[stateImageStatus])
 
     console.log('Images Search',stateImageData);
+
+    const paginationNums = {
+        numerodeimagenes: stateImageData.length,
+        totaldeimagenes: stateImageData.total,
+        totaldepaginas: stateImageData.total_pages
+    }
 
     if(loading){ 
         return <h1>Loading...</h1>
@@ -55,8 +64,8 @@ export function HomePage(){
                 {(width < 1000) ? null : <Subtitles title='Trending searches'/>}
                 <Tags />
                 {(width < 1000) ? null : <Subtitles title='New & Notable'/>}
-                <ContentImages imgs={stateImageData} path={path}/>
-                <BtnDiscoverMore imgsNum={stateImageData.length}/>
+                <ContentImages imgs={stateImageData.results} path={path}/>
+                <Pagination paginationNums={paginationNums}/>
                 <Footer width={width}/>
             </div>
         </>

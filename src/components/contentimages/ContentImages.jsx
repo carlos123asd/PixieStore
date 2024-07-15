@@ -12,6 +12,7 @@ export default function ContentImages({imgs, path}) {
 
     //IR A VER PAGINA INDIVIDUAL DE LA IMAGEN
     const imageSelectedHandle = (id) => {
+        console.log(id,imgs)
             if(path === '/'){
                 dispatch(addSelectData(imgs.filter((img) => {
                     return img.id === id

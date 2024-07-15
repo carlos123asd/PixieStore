@@ -3,6 +3,7 @@ import imgDownload from '../../assets/image/download.svg'
 import { setData, setOpen } from '../../features/modal/modalSlice'
 import { useDispatch } from 'react-redux'
 import { downloadThunk } from '../../features/images/downloadThunk'
+import notification from '../../features/notification/toastify'
 
 export default function BtnGroupMyCollection({id}){
 
@@ -17,6 +18,7 @@ export default function BtnGroupMyCollection({id}){
 
     const downloadImg = () => {
         dispatch(downloadThunk(imgDownLoad[0].urls.full))//photo.links.download_location
+        notification('Images downloaded successfully',2000);
     }
 
     return <>

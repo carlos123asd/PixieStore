@@ -28,11 +28,17 @@
 .pagination__pag__back {
   display: inline-block;
 }
+.pagination__pag__back:hover {
+  cursor: pointer;
+}
 .pagination__pag__total {
   margin: 0 0.3em;
 }
 .pagination__pag__next {
   display: inline-block;
+}
+.pagination__pag__next:hover {
+  cursor: pointer;
 }
 .pagination__pag__actual {
   width: 40px;

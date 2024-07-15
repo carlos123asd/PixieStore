@@ -3,6 +3,8 @@ import imgDownload from '../../assets/image/download.svg'
 import { changeValueLengthLocal } from '../../features/images/imagesChangesSlice';
 import { downloadThunk } from '../../features/images/downloadThunk';
 import { useDispatch } from 'react-redux'
+import notification from '../../features/notification/toastify';
+
 export default function BtnGroupHome({imgs, id}){
     const dispatch = useDispatch()
 
@@ -12,6 +14,7 @@ export default function BtnGroupHome({imgs, id}){
         });
         localStorage.setItem(id,JSON.stringify(imageFavorite));
         dispatch(changeValueLengthLocal(localStorage.length));
+        notification('Image save correctly',2000);
     }
 
     
@@ -20,6 +23,7 @@ export default function BtnGroupHome({imgs, id}){
             return img.id === id
         });
         dispatch(downloadThunk(imgDownLoad[0].urls.full))//photo.links.download_location
+        notification('Images downloaded successfully',2000);
     }
 
     return <>

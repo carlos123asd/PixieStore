@@ -2,19 +2,18 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import 'swiper/swiper-bundle.css'
 import { useNavigate } from 'react-router-dom';
-import { store } from '../../app/store';
 import { addSelectData } from '../../features/imageSelected/imageSelectedSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function RelatedImageSlider({imgs}) {
-
-    console.log(imgs)
+export default function RelatedImageSlider() {
+    const randomImages = useSelector(state => state.images.randomPhotos);
+    console.log(randomImages)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const imageSelectedHandle = (id) => {
-        dispatch(addSelectData(imgs.filter((img) => {
+        dispatch(addSelectData(randomImages.filter((img) => {
             return img.id === id
         })))
     }
@@ -30,7 +29,7 @@ export default function RelatedImageSlider({imgs}) {
             onSlideChange={() => console.log('slide change')}
             className='slider'
         >
-            {imgs.map((img) => {
+            {randomImages.map((img) => {
                 console.log(img)
                 return <>
                     <SwiperSlide onClick={() => {

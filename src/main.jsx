@@ -33,6 +33,7 @@ import './styles/slice.css'
 import './styles/views.css'
 import './styles/duoslider.css'
 import './styles/modal.css'
+import "toastify-js/src/toastify.css"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>

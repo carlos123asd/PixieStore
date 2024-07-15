@@ -25,12 +25,14 @@
         }
         &__back{
             display: inline-block;
+            &:hover{cursor: pointer;}
         }
         &__total{
             margin: 0 .3em;
         }
         &__next{
             display: inline-block;
+            &:hover{cursor: pointer;}
         }
         &__actual{
             width: 40px;

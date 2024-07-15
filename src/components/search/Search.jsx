@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import imgSearch from '../../assets/image/search.svg'
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { imagesSearchThunk } from '../../features/images/imagesSearchThunk';
 import { useNavigate } from 'react-router-dom';
+import { setQuery, setSearch } from '../../features/images/imagesSlice';
 
 export default function Search({placeholder, width, style, path}){
 
@@ -10,9 +11,14 @@ export default function Search({placeholder, width, style, path}){
 
     const dispatch = useDispatch()
     const navigate = useNavigate();
-
     const clickSearchHandle = () => {
-        dispatch(imagesSearchThunk(keyword))
+        dispatch(setSearch(true))
+        dispatch(setQuery(keyword))
+        dispatch(imagesSearchThunk({
+            type: 'search',
+            query: keyword,
+            'pag': 1
+        }))
         if(path === '/profile' || path === '/myCollection'){
             navigate('/')
         }

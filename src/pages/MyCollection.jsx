@@ -13,6 +13,7 @@ import { activeHeigth, activeWidth, setMaxSelect, setMinSelect, setStateSelect }
 import { activateAllBorderNav } from "../features/style/styleContentImageSlice"
 import { Modal } from "@mui/material"
 import { setOpen } from "../features/modal/modalSlice"
+import notification from "../features/notification/toastify"
 
 export function MyCollection(){
     const [width, setWidth] = useState(window.innerWidth);
@@ -93,6 +94,7 @@ export function MyCollection(){
             }
         });
         localStorage.setItem(selectIdEditModal,JSON.stringify(imgChangedDescription))
+        notification('Updated Description Correctly',2000);
         handleClose()
     }
 

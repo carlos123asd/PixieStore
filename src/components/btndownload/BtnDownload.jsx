@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
 import { downloadThunk } from "../../features/images/downloadThunk";
+import notification from '../../features/notification/toastify'
 
 export default function BtnDownload({imgdownload}){
     const dispatch = useDispatch();
     const downloadImg = () => {
-        dispatch(downloadThunk(imgdownload[0].urls.full))//photo.links.download_location
+        dispatch(downloadThunk(imgdownload[0].urls.full))
+        notification('Images downloaded successfully',2000);
     }
 
     return <>

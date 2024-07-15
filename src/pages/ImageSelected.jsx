@@ -49,21 +49,18 @@ export function ImageSelected(){
     }
 
     const dataRandomImage = useSelector(state => state.images.data);
-   
 //AQUII
     useEffect(() => {
         if(dataRandomImage.length !== 0){
-            dispatch(getRandomPhotosSlider(dataRandomImage));
+            console.log('entra')
+            dispatch(getRandomPhotosSlider(dataRandomImage.results));
         }
         dispatch(setStateSelect('none'))
         dispatch(desactiveAllBorderNav())
     }, [])
 
     const data = useSelector(state => state.imageSelected.data);
-
-    const sixRandomImages = useSelector(state => state.images.randomPhotos);
     
-    console.log(data);
     const dataCardInformation = {
         img: data[0].urls.regular,
         profileimage: data[0].user.profile_image.medium,
@@ -107,7 +104,7 @@ export function ImageSelected(){
             {
               (dataRandomImage.length !== 0) ?<>
                 <Subtitles title={'More Images'}/>
-                <RelatedImageSlider imgs={sixRandomImages}/>
+                <RelatedImageSlider />
               </>
               : <></>
             }
