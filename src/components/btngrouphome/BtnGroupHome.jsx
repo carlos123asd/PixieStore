@@ -10,7 +10,7 @@ export default function BtnGroupHome({imgs, id}){
     const dispatch = useDispatch()
     const [activefav,setActivefav] = useState(imgLike);
     const local = []
-    let aux
+    let aux = false
 
     for (let index = 0; index < localStorage.length; index++) {
         local.push(JSON.parse(localStorage.getItem(localStorage.key(index))))
@@ -21,11 +21,14 @@ export default function BtnGroupHome({imgs, id}){
         }
     }
 
+    /* //Seguir una solucion desde aqui, falta que si buscamos algo o ejecutamos algun tag se renderice por completo la vista
     useEffect(() => {
         if(aux){
             setActivefav(imgLikeActive)
+        }else{
+            setActivefav(imgLike)
         }
-    }, [])
+    }, [])*/
 
 
     const clickHandle = () => {

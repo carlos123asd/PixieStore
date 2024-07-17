@@ -17,6 +17,7 @@ export default function Tags(){
             'pag': 1,
             query: keyword
         }))
+        
         navigate('/')
     }
         return <>
