@@ -10,6 +10,9 @@ export default function ContentImages({imgs, path}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const selectorStateSelect = useSelector(state => state.select.state);
+    const selectorDataSelect = useSelector(state => state.select.data);
+
     //IR A VER PAGINA INDIVIDUAL DE LA IMAGEN
     const imageSelectedHandle = (id) => {
         console.log(id,imgs)
@@ -18,17 +21,24 @@ export default function ContentImages({imgs, path}) {
                     return img.id === id
                 })))
             }else if(path === '/myCollection'){
-                const imgIndividual = imgs.filter((img) => {
-                    return img[0].id === id
-                })
-                console.log(imgIndividual);
-                dispatch(addSelectData(imgIndividual[0]))
+                if(selectorStateSelect === 'none'){
+                    const imgIndividual = imgs.filter((img) => {
+                        return img[0].id === id
+                    })
+                    console.log(imgIndividual);
+                    dispatch(addSelectData(imgIndividual[0]))
+                }else{
+                    const imgIndividual = selectorDataSelect.filter((img) => {
+                        return img.id === id
+                    })
+                    console.log(imgIndividual);
+                    dispatch(addSelectData(imgIndividual))
+                }
             }
             navigate('/profile')
     }
 
-    const selectorStateSelect = useSelector(state => state.select.state);
-    const selectorDataSelect = useSelector(state => state.select.data);
+    
     
     console.log(selectorDataSelect);
         return <>

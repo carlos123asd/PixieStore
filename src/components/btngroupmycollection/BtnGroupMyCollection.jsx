@@ -17,7 +17,7 @@ export default function BtnGroupMyCollection({id}){
     }
 
     const downloadImg = () => {
-        dispatch(downloadThunk(imgDownLoad[0].urls.full))//photo.links.download_location
+        dispatch(downloadThunk(imgDownLoad[0].urls.full))
         notification('Images downloaded successfully',2000);
     }
 

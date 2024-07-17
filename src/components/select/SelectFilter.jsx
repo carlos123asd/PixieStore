@@ -70,6 +70,7 @@ export default function SelectFilter(){
             }
         }
         resultSelect = aux3
+        console.log(resultSelect);
         dispatch(setDataFilters(resultSelect));
     }else if(selectorStateSelect === 'width'){
         resultSelect = dataLocalStorage.filter((imgItemData) => {

@@ -121,7 +121,7 @@ export function MyCollection(){
                     </div>
                     
                     <div className="modal__description">
-                    {SelectorSetOper ? <textarea rows="6" cols="33" onChange={(e) => textAreaValue(e.target.value)} className="modal__description__area">{imgModal[0].alt_description}</textarea> : <></>}
+                    {SelectorSetOper ? <textarea rows="6" cols="33" onChange={(e) => textAreaValue(e.target.value)} className="modal__description__area">{imgModal[0].description === null ? imgModal[0].alt_description: imgModal[0].description}</textarea> : <></>}
                         <div className="modal__description__btn" onClick={saveDescription}>Save</div>
                     </div>
                 </Box>    

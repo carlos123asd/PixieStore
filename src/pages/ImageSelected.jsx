@@ -60,6 +60,7 @@ export function ImageSelected(){
     }, [])
 
     const data = useSelector(state => state.imageSelected.data);
+    console.log(data)
     
     const dataCardInformation = {
         img: data[0].urls.regular,
