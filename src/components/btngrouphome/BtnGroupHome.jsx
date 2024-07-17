@@ -1,12 +1,14 @@
 import imgLike from '../../assets/image/like.svg'
+import imgLikeActive from '../../assets/image/likeactive.svg'
 import imgDownload from '../../assets/image/download.svg'
 import { changeValueLengthLocal } from '../../features/images/imagesChangesSlice';
 import { downloadThunk } from '../../features/images/downloadThunk';
 import { useDispatch } from 'react-redux'
 import notification from '../../features/notification/toastify';
-
+import { useState } from 'react';
 export default function BtnGroupHome({imgs, id}){
     const dispatch = useDispatch()
+    const [activefav,setActivefav] = useState(imgLike);
 
     const clickHandle = () => {
         let imageFavorite = imgs.filter(img => {
@@ -15,8 +17,8 @@ export default function BtnGroupHome({imgs, id}){
         localStorage.setItem(id,JSON.stringify(imageFavorite));
         dispatch(changeValueLengthLocal(localStorage.length));
         notification('Image save correctly',2000);
+        setActivefav(imgLikeActive)
     }
-
     
     const downloadImg = () => {
         const imgDownLoad = imgs.filter(img => {
@@ -29,7 +31,7 @@ export default function BtnGroupHome({imgs, id}){
     return <>
         <div className="btngrouphome">
             <div className="btngrouphome__like" onClick={clickHandle}>
-                <img src={imgLike} alt='I like it' className='btngrouphome__like__img'/>
+                <img src={activefav} alt='I like it' className='btngrouphome__like__img'/>
             </div>
 
             
