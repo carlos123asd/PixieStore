@@ -5,10 +5,28 @@ import { changeValueLengthLocal } from '../../features/images/imagesChangesSlice
 import { downloadThunk } from '../../features/images/downloadThunk';
 import { useDispatch } from 'react-redux'
 import notification from '../../features/notification/toastify';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 export default function BtnGroupHome({imgs, id}){
     const dispatch = useDispatch()
     const [activefav,setActivefav] = useState(imgLike);
+    const local = []
+    let aux
+
+    for (let index = 0; index < localStorage.length; index++) {
+        local.push(JSON.parse(localStorage.getItem(localStorage.key(index))))
+    }
+    for (let index = 0; index < local.length; index++) {
+        if(local[index][0].id === id){
+            aux = true
+        }
+    }
+
+    useEffect(() => {
+        if(aux){
+            setActivefav(imgLikeActive)
+        }
+    }, [])
+
 
     const clickHandle = () => {
         let imageFavorite = imgs.filter(img => {
