@@ -7,28 +7,18 @@ import { useDispatch } from 'react-redux'
 import notification from '../../features/notification/toastify';
 import { useEffect, useState } from 'react';
 export default function BtnGroupHome({imgs, id}){
+    
     const dispatch = useDispatch()
     const [activefav,setActivefav] = useState(imgLike);
-    const local = []
-    let aux = false
 
-    for (let index = 0; index < localStorage.length; index++) {
-        local.push(JSON.parse(localStorage.getItem(localStorage.key(index))))
-    }
-    for (let index = 0; index < local.length; index++) {
-        if(local[index][0].id === id){
-            aux = true
-        }
-    }
-
-    /* //Seguir una solucion desde aqui, falta que si buscamos algo o ejecutamos algun tag se renderice por completo la vista
     useEffect(() => {
-        if(aux){
+        const local = localStorage.getItem(id)
+        if(JSON.parse(local) != null){
             setActivefav(imgLikeActive)
         }else{
             setActivefav(imgLike)
         }
-    }, [])*/
+    }, [])
 
 
     const clickHandle = () => {
